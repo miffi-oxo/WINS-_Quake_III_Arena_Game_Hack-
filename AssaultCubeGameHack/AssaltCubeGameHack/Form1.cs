@@ -25,6 +25,7 @@ namespace AssaltCubeGameHack
         bool healthHack = false;
         bool ammoHack = false;
         bool wallHack = false;
+        bool attackHack = false;
 
         PlayerData mainPlayer;
         PlayerData[] enemyPlayer = new PlayerData[30];
@@ -118,6 +119,11 @@ namespace AssaltCubeGameHack
                     if (ammoHack)
                     {
                         mainPlayer.hackAmmo(mem);
+                    }
+
+                    if (attackHack)
+                    {
+                        mainPlayer.hackAttack(mem);
                     }
 
                     // 마우스 오른쪽 키에 대한 상태를 확인
@@ -327,6 +333,21 @@ namespace AssaltCubeGameHack
             catch (Exception ex) // 시도했을 때 예외 처리
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void AttackBT_Click(object sender, EventArgs e)
+        {
+            if (attackHack)
+            {
+                attackHack = false;
+                AttackHLBL.Text = "동작 안함";
+            }
+            else
+            {
+                attackHack = true;
+                AttackHLBL.Text = "동작 중";
+
             }
         }
     }

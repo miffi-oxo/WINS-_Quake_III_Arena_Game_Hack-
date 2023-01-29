@@ -17,6 +17,9 @@ namespace AssaltCubeGameHack
         int y_pos_offset = 0x30;
         int x_angle_offset = 0x34;
         int y_angle_offset = 0x38;
+        int weapon1_offset = 0x164; //1번총
+        int weapon2_offset = 0x150; //2번총
+        int weapon4_offset = 0x14C; //4번칼
 
         // 캐릭터 정보
         public int health;
@@ -76,6 +79,13 @@ namespace AssaltCubeGameHack
             float _y = Double2Float(y_angle);
             mem.WriteFloat(base_addr + x_angle_offset, _x); // x 각도 세팅
             mem.WriteFloat(base_addr + y_angle_offset, _y); // y 각도 세팅
+        }
+
+        internal void hackAttack(ProcessMemoryReader mem)
+        {
+            mem.WriteInt(base_addr + weapon1_offset, 30); //1번총 공격속도 상승
+            mem.WriteInt(base_addr + weapon2_offset, 30); //2번총 공격속도 상승
+            mem.WriteInt(base_addr + weapon4_offset, 30); //4번칼 공격속도 상승
         }
 
         private float Double2Float(double input)
