@@ -24,11 +24,12 @@ namespace AssaltCubeGameHack
         bool attach = false;
         bool healthHack = false;
         bool ammoHack = false;
+        bool ammo2Hack = false;
+        bool speedHack = false;
         bool wallHack = false;
 
         PlayerData mainPlayer;
         PlayerData[] enemyPlayer = new PlayerData[30];
-        
 
 
         public Form1()
@@ -41,6 +42,7 @@ namespace AssaltCubeGameHack
 
         }
 
+        //종료
         private void ExitBT_Click(object sender, EventArgs e)
         {
             DialogResult result; // 닫기 실행할 꺼냐?? 정말??
@@ -69,7 +71,6 @@ namespace AssaltCubeGameHack
         }
 
 
-        // 콤보박스 메뉴중에 어떤 항목을 클릭했을 때 동작할 내용
         // 프로세스를 선택했을 때 어떤 행동을 할지 정하는 애
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -88,7 +89,7 @@ namespace AssaltCubeGameHack
                     mem.OpenProcess(); // 프로세스를 열기
 
                     MessageBox.Show("프로세스 열기 성공! " + attachProc.ProcessName);
-                    int base_ptr = attachProc.MainModule.BaseAddress.ToInt32() + 0x0055C424;
+                    int base_ptr = attachProc.MainModule.BaseAddress.ToInt32() + 0x00557690;
                     int player_base = mem.ReadInt(base_ptr);
                     mainPlayer = new PlayerData(player_base);
 
@@ -119,6 +120,16 @@ namespace AssaltCubeGameHack
                     {
                         mainPlayer.hackAmmo(mem);
                     }
+
+                    if (ammo2Hack)
+                    {
+                        mainPlayer.hackAmmo2(mem);
+                    }
+
+                    if (speedHack)
+                    {
+                        mainPlayer.hackSpeed(mem);
+                    } 
 
                     // 마우스 오른쪽 키에 대한 상태를 확인
                     int hotkey = ProcessMemoryReaderApi.GetKeyState(0x02);
@@ -159,10 +170,14 @@ namespace AssaltCubeGameHack
                     }
                     
                     HealthLBL.Text = "Health: " + mainPlayer.health; // Health: 100
-                    AmmoLBL.Text = "Ammo: " + mainPlayer.ammo;
+                    AmmoLBL.Text = "Ammo: " + mainPlayer.ammo + " | " + mainPlayer.ammo2 ;
                     BulletProofLBL.Text = "BulletProof: " + mainPlayer.bullet_proof;
                     AngleLBL.Text = "Angle: " + mainPlayer.x_angle.ToString("#.##") + " | " + mainPlayer.y_angle.ToString("#.##");
                     PositionLBL.Text = "Pos: " + mainPlayer.x_pos.ToString("#.##") + ", " + mainPlayer.y_pos.ToString("#.##") + "," + mainPlayer.z_pos.ToString("#.##");
+                    
+                    ]
+                    //VLB.Text = "v: " + mainPlayer.v;
+
 
                     try
                     {
@@ -173,7 +188,8 @@ namespace AssaltCubeGameHack
                             GetEnemyState(mem);
 
                             EHealthLBL.Text = "Health: " + enemyPlayer[enemyNum - 1].health; // Health: 100
-                            EAmmoLBL.Text = "Ammo: " + enemyPlayer[enemyNum - 1].ammo;
+                            EAmmoLBL.Text = "Ammo: " + enemyPlayer[enemyNum - 1].ammo ;
+                            //EAmmo2LBL.Text = "Ammo2: " + enemyPlayer[enemyNum - 1].ammo2
                             EBulletProofLBL.Text = "BulletProof: " + enemyPlayer[enemyNum - 1].bullet_proof;
                             EAngleLBL.Text = "Angle: " + enemyPlayer[enemyNum - 1].x_angle.ToString("#.##") + " | " + enemyPlayer[enemyNum - 1].y_angle.ToString("#.##");
                             EPositionLBL.Text = "Pos: " + enemyPlayer[enemyNum - 1].x_pos.ToString("#.##") + ", " + enemyPlayer[enemyNum - 1].y_pos.ToString("#.##") + "," + enemyPlayer[enemyNum - 1].z_pos.ToString("#.##");
@@ -259,7 +275,7 @@ namespace AssaltCubeGameHack
             if (ammoHack)
             {
                 ammoHack = false;
-                ammoHLBL.Text = "동작 안함";
+                ammoHLBL.Text = "동작 안 함";
             }
             else
             {
@@ -289,6 +305,34 @@ namespace AssaltCubeGameHack
             }
         }
 
+        //ammo2
+        private void ammo2CB_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ammo2CB.Checked == true)
+            {
+            ammo2Hack = true;
+            }
+            else
+            {
+             ammo2Hack = false;
+            }
+        }
+
+        //speed
+        private void speedCB_CheckedChanged(object sender, EventArgs e)
+        {
+            if (speedCB.Checked == true)
+            {
+                speedHack = true;
+            }
+            else
+            {
+                speedHack = false;
+
+            }
+
+        }
+
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -304,7 +348,7 @@ namespace AssaltCubeGameHack
         private void changeEnemyStateBtn_Click(object sender, EventArgs e)
         {
             try
-            {
+           {
                 if (comboBox2.SelectedIndex != -1) // 목록을 선택했다면
                 {
                     int enemyNum = int.Parse(comboBox2.SelectedItem.ToString()); // 1 ~ 30
@@ -328,6 +372,14 @@ namespace AssaltCubeGameHack
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+
+
+        //임시 속도
+        private void VLB_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

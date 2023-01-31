@@ -41,3 +41,15 @@ C:\Users\oxo\Desktop\AssaultCubeGameHack-master\AssaltCubeGameHack\obj\Debug\Ass
 C:\Users\oxo\Desktop\AssaultCubeGameHack-master\AssaltCubeGameHack\obj\Debug\AssaltCubeGameHack.csproj.CoreCompileInputs.cache
 C:\Users\oxo\Desktop\AssaultCubeGameHack-master\AssaltCubeGameHack\obj\Debug\AssaltCubeGameHack.exe
 C:\Users\oxo\Desktop\AssaultCubeGameHack-master\AssaltCubeGameHack\obj\Debug\AssaltCubeGameHack.pdb
+C:\Users\user\OneDrive\바탕 화면\WINS_Assaultcube--SISS-\AssaultCubeGameHack\AssaltCubeGameHack\bin\Debug\AssaltCubeGameHack.exe.config
+C:\Users\user\OneDrive\바탕 화면\WINS_Assaultcube--SISS-\AssaultCubeGameHack\AssaltCubeGameHack\bin\Debug\AssaltCubeGameHack.exe
+C:\Users\user\OneDrive\바탕 화면\WINS_Assaultcube--SISS-\AssaultCubeGameHack\AssaltCubeGameHack\bin\Debug\AssaltCubeGameHack.pdb
+C:\Users\user\OneDrive\바탕 화면\WINS_Assaultcube--SISS-\AssaultCubeGameHack\AssaltCubeGameHack\obj\Debug\AssaltCubeGameHack.csproj.AssemblyReference.cache
+C:\Users\user\OneDrive\바탕 화면\WINS_Assaultcube--SISS-\AssaultCubeGameHack\AssaltCubeGameHack\obj\Debug\AssaltCubeGameHack.csproj.SuggestedBindingRedirects.cache
+C:\Users\user\OneDrive\바탕 화면\WINS_Assaultcube--SISS-\AssaultCubeGameHack\AssaltCubeGameHack\obj\Debug\AssaltCubeGameHack.Form1.resources
+C:\Users\user\OneDrive\바탕 화면\WINS_Assaultcube--SISS-\AssaultCubeGameHack\AssaltCubeGameHack\obj\Debug\AssaltCubeGameHack.OverlayForm.resources
+C:\Users\user\OneDrive\바탕 화면\WINS_Assaultcube--SISS-\AssaultCubeGameHack\AssaltCubeGameHack\obj\Debug\AssaltCubeGameHack.Properties.Resources.resources
+C:\Users\user\OneDrive\바탕 화면\WINS_Assaultcube--SISS-\AssaultCubeGameHack\AssaltCubeGameHack\obj\Debug\AssaltCubeGameHack.csproj.GenerateResource.cache
+C:\Users\user\OneDrive\바탕 화면\WINS_Assaultcube--SISS-\AssaultCubeGameHack\AssaltCubeGameHack\obj\Debug\AssaltCubeGameHack.csproj.CoreCompileInputs.cache
+C:\Users\user\OneDrive\바탕 화면\WINS_Assaultcube--SISS-\AssaultCubeGameHack\AssaltCubeGameHack\obj\Debug\AssaltCubeGameHack.exe
+C:\Users\user\OneDrive\바탕 화면\WINS_Assaultcube--SISS-\AssaultCubeGameHack\AssaltCubeGameHack\obj\Debug\AssaltCubeGameHack.pdb
