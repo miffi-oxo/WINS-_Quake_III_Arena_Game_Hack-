@@ -46,6 +46,7 @@
             this.ammoHLBL = new System.Windows.Forms.Label();
             this.WallHackCHB = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.changeEnemyStateBtn = new System.Windows.Forms.Button();
             this.changeEnemyBulletProof = new System.Windows.Forms.TextBox();
             this.changeEnemyAmmo = new System.Windows.Forms.TextBox();
             this.changeEnemyHealth = new System.Windows.Forms.TextBox();
@@ -55,9 +56,16 @@
             this.EAmmoLBL = new System.Windows.Forms.Label();
             this.EHealthLBL = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.changeEnemyStateBtn = new System.Windows.Forms.Button();
+            this.AttackBT = new System.Windows.Forms.Button();
+            this.AttackHLBL = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.HighBL = new System.Windows.Forms.Label();
+            this.JumpCHB = new System.Windows.Forms.CheckBox();
+            this.ResetBT = new System.Windows.Forms.Button();
+            this.MoveBT = new System.Windows.Forms.Button();
             this.PlayerDataBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // TitleLBL
@@ -117,6 +125,7 @@
             // 
             // PlayerDataBox
             // 
+            this.PlayerDataBox.Controls.Add(this.MoveBT);
             this.PlayerDataBox.Controls.Add(this.AngleLBL);
             this.PlayerDataBox.Controls.Add(this.PositionLBL);
             this.PlayerDataBox.Controls.Add(this.BulletProofLBL);
@@ -126,7 +135,7 @@
             this.PlayerDataBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.PlayerDataBox.Name = "PlayerDataBox";
             this.PlayerDataBox.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.PlayerDataBox.Size = new System.Drawing.Size(391, 160);
+            this.PlayerDataBox.Size = new System.Drawing.Size(391, 205);
             this.PlayerDataBox.TabIndex = 3;
             this.PlayerDataBox.TabStop = false;
             this.PlayerDataBox.Text = "Player Data";
@@ -213,7 +222,7 @@
             // WallHackCHB
             // 
             this.WallHackCHB.AutoSize = true;
-            this.WallHackCHB.Location = new System.Drawing.Point(77, 289);
+            this.WallHackCHB.Location = new System.Drawing.Point(77, 324);
             this.WallHackCHB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.WallHackCHB.Name = "WallHackCHB";
             this.WallHackCHB.Size = new System.Drawing.Size(95, 19);
@@ -239,6 +248,16 @@
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Enemy Data";
+            // 
+            // changeEnemyStateBtn
+            // 
+            this.changeEnemyStateBtn.Location = new System.Drawing.Point(240, 116);
+            this.changeEnemyStateBtn.Name = "changeEnemyStateBtn";
+            this.changeEnemyStateBtn.Size = new System.Drawing.Size(56, 28);
+            this.changeEnemyStateBtn.TabIndex = 8;
+            this.changeEnemyStateBtn.Text = "변경";
+            this.changeEnemyStateBtn.UseVisualStyleBackColor = true;
+            this.changeEnemyStateBtn.Click += new System.EventHandler(this.changeEnemyStateBtn_Click);
             // 
             // changeEnemyBulletProof
             // 
@@ -347,21 +366,85 @@
             this.comboBox2.TabIndex = 5;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
-            // changeEnemyStateBtn
+            // AttackBT
             // 
-            this.changeEnemyStateBtn.Location = new System.Drawing.Point(240, 116);
-            this.changeEnemyStateBtn.Name = "changeEnemyStateBtn";
-            this.changeEnemyStateBtn.Size = new System.Drawing.Size(56, 28);
-            this.changeEnemyStateBtn.TabIndex = 8;
-            this.changeEnemyStateBtn.Text = "변경";
-            this.changeEnemyStateBtn.UseVisualStyleBackColor = true;
-            this.changeEnemyStateBtn.Click += new System.EventHandler(this.changeEnemyStateBtn_Click);
+            this.AttackBT.Location = new System.Drawing.Point(77, 277);
+            this.AttackBT.Name = "AttackBT";
+            this.AttackBT.Size = new System.Drawing.Size(158, 28);
+            this.AttackBT.TabIndex = 9;
+            this.AttackBT.Text = "Attack Hack";
+            this.AttackBT.UseVisualStyleBackColor = true;
+            this.AttackBT.Click += new System.EventHandler(this.AttackBT_Click);
+            // 
+            // AttackHLBL
+            // 
+            this.AttackHLBL.AutoSize = true;
+            this.AttackHLBL.Location = new System.Drawing.Point(263, 284);
+            this.AttackHLBL.Name = "AttackHLBL";
+            this.AttackHLBL.Size = new System.Drawing.Size(72, 15);
+            this.AttackHLBL.TabIndex = 10;
+            this.AttackHLBL.Text = "동작 안함";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.ResetBT);
+            this.groupBox2.Controls.Add(this.JumpCHB);
+            this.groupBox2.Controls.Add(this.HighBL);
+            this.groupBox2.Location = new System.Drawing.Point(77, 379);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(267, 172);
+            this.groupBox2.TabIndex = 11;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Super Jump_press \"Q\"";
+            // 
+            // HighBL
+            // 
+            this.HighBL.AutoSize = true;
+            this.HighBL.Location = new System.Drawing.Point(17, 48);
+            this.HighBL.Name = "HighBL";
+            this.HighBL.Size = new System.Drawing.Size(41, 15);
+            this.HighBL.TabIndex = 12;
+            this.HighBL.Text = "High:";
+            // 
+            // JumpCHB
+            // 
+            this.JumpCHB.AutoSize = true;
+            this.JumpCHB.Location = new System.Drawing.Point(20, 88);
+            this.JumpCHB.Name = "JumpCHB";
+            this.JumpCHB.Size = new System.Drawing.Size(105, 19);
+            this.JumpCHB.TabIndex = 12;
+            this.JumpCHB.Text = "Super Jump";
+            this.JumpCHB.UseVisualStyleBackColor = true;
+            this.JumpCHB.CheckedChanged += new System.EventHandler(this.JumpCHB_CheckedChanged);
+            // 
+            // ResetBT
+            // 
+            this.ResetBT.Location = new System.Drawing.Point(57, 124);
+            this.ResetBT.Name = "ResetBT";
+            this.ResetBT.Size = new System.Drawing.Size(153, 29);
+            this.ResetBT.TabIndex = 12;
+            this.ResetBT.Text = "Reset position";
+            this.ResetBT.UseVisualStyleBackColor = true;
+            this.ResetBT.Click += new System.EventHandler(this.ResetBT_Click);
+            // 
+            // MoveBT
+            // 
+            this.MoveBT.Location = new System.Drawing.Point(24, 159);
+            this.MoveBT.Name = "MoveBT";
+            this.MoveBT.Size = new System.Drawing.Size(145, 27);
+            this.MoveBT.TabIndex = 1;
+            this.MoveBT.Text = "Move to heal";
+            this.MoveBT.UseVisualStyleBackColor = true;
+            this.MoveBT.Click += new System.EventHandler(this.MoveBT_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1396, 376);
+            this.ClientSize = new System.Drawing.Size(1396, 591);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.AttackHLBL);
+            this.Controls.Add(this.AttackBT);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.WallHackCHB);
@@ -382,6 +465,8 @@
             this.PlayerDataBox.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -416,6 +501,13 @@
         private System.Windows.Forms.TextBox changeEnemyAmmo;
         private System.Windows.Forms.TextBox changeEnemyHealth;
         private System.Windows.Forms.Button changeEnemyStateBtn;
+        private System.Windows.Forms.Button AttackBT;
+        private System.Windows.Forms.Label AttackHLBL;
+        private System.Windows.Forms.Button MoveBT;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button ResetBT;
+        private System.Windows.Forms.CheckBox JumpCHB;
+        private System.Windows.Forms.Label HighBL;
     }
 }
 

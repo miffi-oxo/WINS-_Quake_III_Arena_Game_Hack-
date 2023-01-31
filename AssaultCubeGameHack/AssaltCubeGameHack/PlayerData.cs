@@ -17,6 +17,9 @@ namespace AssaltCubeGameHack
         int y_pos_offset = 0x30;
         int x_angle_offset = 0x34;
         int y_angle_offset = 0x38;
+        int weapon1_offset = 0x164; //1번총
+        int weapon2_offset = 0x150; //2번총
+        int weapon4_offset = 0x14C; //4번칼
 
         // 캐릭터 정보
         public int health;
@@ -70,12 +73,35 @@ namespace AssaltCubeGameHack
             mem.WriteInt(base_addr + ammo_offset, 1000); // 탄약 1000으로...
         }
 
+        internal void hackjump(ProcessMemoryReader mem) //슈퍼점프
+        {
+            mem.WriteFloat(base_addr + y_pos_offset, 10.0f); // 기존 높이에서 10만큼 점프->이동(정수로할 경우 작동x)
+        }
+
+        internal void reset(ProcessMemoryReader mem) //슈퍼점프
+        {
+            mem.WriteFloat(base_addr + y_pos_offset, 2.0f); // 기존 높이에서 10만큼 점프->이동(정수로할 경우 작동x)
+        }
+
+        internal void hackheal(ProcessMemoryReader mem) //힐팩의 위치로 이동
+        {
+            mem.WriteFloat(base_addr + x_pos_offset, 77.39f);
+            mem.WriteFloat(base_addr + y_pos_offset, 1.0f);
+            mem.WriteFloat(base_addr + z_pos_offset, 76.93f);
+        }
+
         internal void hackAim(ProcessMemoryReader mem, double x_angle, double y_angle)
         {
             float _x = Double2Float(x_angle);
             float _y = Double2Float(y_angle);
             mem.WriteFloat(base_addr + x_angle_offset, _x); // x 각도 세팅
             mem.WriteFloat(base_addr + y_angle_offset, _y); // y 각도 세팅
+        }
+        internal void hackAttack(ProcessMemoryReader mem)
+        {
+            mem.WriteInt(base_addr + weapon1_offset, 30); //1번총 공격속도 상승
+            mem.WriteInt(base_addr + weapon2_offset, 30); //2번총 공격속도 상승
+            mem.WriteInt(base_addr + weapon4_offset, 30); //4번칼 공격속도 상승
         }
 
         private float Double2Float(double input)

@@ -25,6 +25,8 @@ namespace AssaltCubeGameHack
         bool healthHack = false;
         bool ammoHack = false;
         bool wallHack = false;
+        bool superjump = false;
+        bool attackHack = false;
 
         PlayerData mainPlayer;
         PlayerData[] enemyPlayer = new PlayerData[30];
@@ -120,6 +122,11 @@ namespace AssaltCubeGameHack
                         mainPlayer.hackAmmo(mem);
                     }
 
+                    if (attackHack)
+                    {
+                        mainPlayer.hackAttack(mem);
+                    }
+
                     // 마우스 오른쪽 키에 대한 상태를 확인
                     int hotkey = ProcessMemoryReaderApi.GetKeyState(0x02);
 
@@ -157,12 +164,24 @@ namespace AssaltCubeGameHack
                         
                         mainPlayer.hackAim(mem, min_x_angle, min_y_angle);
                     }
-                    
+
+                    /*if (superjump) //슈퍼점프
+                    {
+                        mainPlayer.hacksuper(mem);
+                    }*/
+                    //스페이스에 대한 상태 확인
+                    int hotkey2 = ProcessMemoryReaderApi.GetKeyState(0x51);
+                    if (superjump && (hotkey2 & 0x8000) != 0) //Q키를 눌렀다면
+                    {
+                        mainPlayer.hackjump(mem);
+                    }
+
                     HealthLBL.Text = "Health: " + mainPlayer.health; // Health: 100
                     AmmoLBL.Text = "Ammo: " + mainPlayer.ammo;
                     BulletProofLBL.Text = "BulletProof: " + mainPlayer.bullet_proof;
                     AngleLBL.Text = "Angle: " + mainPlayer.x_angle.ToString("#.##") + " | " + mainPlayer.y_angle.ToString("#.##");
                     PositionLBL.Text = "Pos: " + mainPlayer.x_pos.ToString("#.##") + ", " + mainPlayer.y_pos.ToString("#.##") + "," + mainPlayer.z_pos.ToString("#.##");
+                    HighBL.Text = "High: " + mainPlayer.y_pos;
 
                     try
                     {
@@ -328,6 +347,45 @@ namespace AssaltCubeGameHack
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void AttackBT_Click(object sender, EventArgs e)
+        {
+            if (attackHack)
+            {
+                attackHack = false;
+                AttackHLBL.Text = "동작 안함";
+            }
+            else
+            {
+                attackHack = true;
+                AttackHLBL.Text = "동작 중";
+
+            }
+        }
+
+        private void ResetBT_Click(object sender, EventArgs e)
+        {
+            mainPlayer.reset(mem);
+        }
+
+        private void JumpCHB_CheckedChanged(object sender, EventArgs e)
+        {
+            if (JumpCHB.Checked == true)
+            {
+                // 만약에 체크박스가 체킹돼 있다면...
+                superjump = true;
+            }
+            else
+            {
+                // 만약에 체크박스가 체킹돼 있지 않다면 ...
+                superjump = false;
+            }
+        }
+
+        private void MoveBT_Click(object sender, EventArgs e)
+        {
+            mainPlayer.hackheal(mem);
         }
     }
 }
